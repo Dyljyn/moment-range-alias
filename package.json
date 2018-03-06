@@ -1,0 +1,41 @@
+{
+  "name": "moment-range-alias",
+  "version": "0.1.0",
+  "description": "A class to convert a `moment-range` into an alias and vice versa",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dyljyn/moment-range-alias.git"
+  },
+  "scripts": {
+    "build": "tsc",
+    "serve": "tsc -w",
+    "test": "karma start"
+  },
+  "author": {
+    "name": "Dyljyn",
+    "url": "https://github.com/Dyljyn",
+    "email": "vanbommeldylan@gmail"
+  },
+  "homepage": "https://github.com/Dyljyn/moment-range-alias#readme",
+  "bugs": {
+    "url": "https://github.com/Dyljyn/moment-range-alias/issues"
+  },
+  "license": "ISC",
+  "main": "dist/range-alias.js",
+  "types": "dist/range-alias.d.ts",
+  "peerDependencies": {
+    "moment": "2.21.0",
+    "moment-range": "3.1.1"
+  },
+  "devDependencies": {
+    "@types/jasmine": "2.8.6",
+    "@types/moment-range": "3.1.0",
+    "@types/node": "9.4.6",
+    "jasmine-core": "3.1.0",
+    "karma": "2.0.0",
+    "karma-chrome-launcher": "2.2.0",
+    "karma-jasmine": "1.1.1",
+    "karma-typescript": "3.0.12",
+    "typescript": "2.7.2"
+  }
+}
