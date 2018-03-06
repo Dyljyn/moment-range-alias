@@ -8,12 +8,12 @@
 ```js
 import { thisOperationFactory } from 'moment-range-alias/dist/operations';
 
+const thisOperation = thisOperationFactory();
+/// Or with a custom date to compare with
+const thisOperation = thisOperationFactory(moment('2018-01-05'));
+
 const rangeAlias = new RangeAlias()
-    .setOperations(thisOperationFactory())
-    /// Or with a custom date to compare with
-    .setOperations(
-        thisOperationFactory(moment('2018-01-05'))
-    )
+    .setOperations(thisOperation)
 ```
 
 ## getAlias()
