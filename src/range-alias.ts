@@ -1,5 +1,5 @@
-import { MomentInput } from 'moment';
 import * as Moment from 'moment';
+import { MomentInput } from 'moment';
 import { DateRange, extendMoment } from 'moment-range';
 import { Operation } from './operation.model';
 
@@ -17,6 +17,11 @@ export class RangeAlias {
   public readonly unitOfTimes: UnitOfTimeChar[] = RangeAlias.supportedUnits;
 
   private _operations: Operation[] = [];
+
+  private static withinRange(range: DateRange, insideRange: DateRange): boolean {
+    return insideRange.start.isSameOrAfter(range.start)
+      && insideRange.end.isSameOrBefore(range.end);
+  }
 
   constructor(unitsOfTime?: UnitOfTimeChar[]) {
     if (unitsOfTime && unitsOfTime.length > 0) {
@@ -101,6 +106,20 @@ export class RangeAlias {
     });
 
     return alias;
+  }
+
+  public getAvailableAliases(range: DateRange): string[] {
+    return this.unitOfTimes.reduce((aliases, unit) => {
+      this.operations.forEach(operation => {
+        const operationRange = operation.getRange(unit);
+
+        if (RangeAlias.withinRange(range, operationRange)) {
+          aliases = [...aliases, operation.key + unit] as any
+        }
+      });
+
+      return aliases;
+    }, []);
   }
 }
 

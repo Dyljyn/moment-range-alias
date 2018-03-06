@@ -45,3 +45,18 @@ rangeAlias.getRange('tM');
 // Get the range of "t(his) y(ear)"
 rangeAlias.getRange('ty');
 ```
+
+
+## getAvailableAliases()
+
+Retrieve all possible aliases within a range
+
+```js
+const range = moment.range(null, null); // Infinite
+const range = moment.range(moment()); // start date
+const range = moment.range(null, moment()); // end date
+const range = moment.range(moment().startOf('month'), moment()); // start + end date
+
+// Returns array of possible aliases
+rangeAlias.getAvailableAliases(range); // ['lM', 'tM', 'lw', 'tw']
+```

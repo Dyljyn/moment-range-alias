@@ -1,8 +1,6 @@
 import * as Moment from 'moment';
 import { DateRange, extendMoment } from 'moment-range';
-import { lastOperationFactory } from './operations/last.operation';
-import { nowOperationFactory } from './operations/now.operation';
-import { thisOperationFactory } from './operations/this.operation';
+import { lastOperationFactory, nowOperationFactory, thisOperationFactory } from './operations';
 import { RangeAlias, UnitOfTimeChar } from './range-alias';
 
 const moment = extendMoment(Moment);
@@ -156,6 +154,43 @@ describe('RangeAlias', () => {
       const alias = rangeAlias.getAlias(range, maxDate);
 
       expect(alias).toEqual('ly');
+    });
+  });
+
+  describe('getAvailableAliases()', () => {
+    let rangeAlias: RangeAlias;
+    const units: UnitOfTimeChar[] = ['w', 'M'];
+    const operations = [
+      thisOperationFactory(mockedDate),
+      lastOperationFactory(mockedDate)
+    ];
+
+    beforeEach(() => {
+      rangeAlias = new RangeAlias(units).addOperations(...operations);
+    });
+
+    it('should return all for an infinite range', () => {
+      const range = moment.range(<any>undefined, <any>undefined);
+
+      const aliases = rangeAlias.getAvailableAliases(range);
+
+      expect(aliases.length).toBe(units.length * operations.length);
+    });
+
+    it('should respect start date', () => {
+      const range = moment.range(mockedDate.clone().startOf('month'), <any>null);
+
+      const aliases = rangeAlias.getAvailableAliases(range);
+
+      expect(aliases.length).toBe(3);
+    });
+
+    it('should respect end date', () => {
+      const range = moment.range(<any>null, mockedDate.clone());
+
+      const aliases = rangeAlias.getAvailableAliases(range);
+
+      expect(aliases.length).toBe(2);
     });
   });
 });
