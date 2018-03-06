@@ -1,6 +1,6 @@
 {
   "name": "moment-range-alias",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A class to convert a `moment-range` into an alias and vice versa",
   "repository": {
     "type": "git",
