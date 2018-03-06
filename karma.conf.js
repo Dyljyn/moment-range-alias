@@ -36,14 +36,10 @@ module.exports = function (config) {
         singleRun: false,
         concurrency: Infinity,
         karmaTypescriptConfig: {
-            compilerOptions: {
-                target: "es5",
-                sourceMap: true
-            },
             coverageOptions: {
                 exclude: [/\.(d|test)\.ts$/i, /.*node_modules.*/]
             },
-            tsconfig: './tsconfig.json'
+            tsconfig: './tsconfig.test.json'
         }
     })
 };
