@@ -20,7 +20,7 @@
   "bugs": {
     "url": "https://github.com/Dyljyn/moment-range-alias/issues"
   },
-  "license": "ISC",
+  "license": "MIT",
   "main": "dist/range-alias.js",
   "types": "dist/range-alias.d.ts",
   "peerDependencies": {
