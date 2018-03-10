@@ -1,5 +1,7 @@
 # moment-range-alias
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/Dyljyn/moment-range-alias.svg)](https://greenkeeper.io/)
+
 
 # How to use
 
