@@ -84,22 +84,17 @@ export class RangeAlias {
     let alias: string | undefined = undefined;
 
     this.unitOfTimes.find(unit => {
-      const operation = this.operations.find(it => {
+      const operation = this.operations.find(op => {
         let compareRange: DateRange = range;
 
-        console.log(compareRange.start.toDate(), compareRange.end.toDate());
-
-        if (max) {
-          const endDate = it.getEndDate(unit, range.start);
-
-          if (range.end.isAfter(max)) {
-            compareRange = moment.range(range.start, endDate);
-          }
+        if (max && range.end.isSameOrAfter(max)) {
+          compareRange = moment.range(
+            range.start,
+            op.getEndDate(unit, range.start)
+          );
         }
 
-        console.log(compareRange.start.toDate(), compareRange.end.toDate());
-
-        return it.isOperation(compareRange, unit);
+        return op.isOperation(compareRange, unit);
       });
 
       if (operation) {
