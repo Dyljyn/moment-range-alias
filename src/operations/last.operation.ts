@@ -5,7 +5,7 @@ export { MomentRangeMethods };
 
 const moment = extendMoment(Moment);
 
-export const lastOperationFactory = (date = moment()): Operation => ({
+export const lastOperationFactory = (date: Moment.MomentInput = Date.now()): Operation => ({
   key: 'l',
   getRange: (unit) => {
     return moment.range(

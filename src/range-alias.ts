@@ -87,13 +87,17 @@ export class RangeAlias {
       const operation = this.operations.find(it => {
         let compareRange: DateRange = range;
 
+        console.log(compareRange.start.toDate(), compareRange.end.toDate());
+
         if (max) {
           const endDate = it.getEndDate(unit, range.start);
 
-          if (endDate.isAfter(max)) {
+          if (range.end.isAfter(max)) {
             compareRange = moment.range(range.start, endDate);
           }
         }
+
+        console.log(compareRange.start.toDate(), compareRange.end.toDate());
 
         return it.isOperation(compareRange, unit);
       });
